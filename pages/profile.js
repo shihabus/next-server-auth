@@ -6,12 +6,14 @@ export default function Profile() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getUserProfile().then((user) => setUser(user));
+    getUserProfile()
+      .then((user) => setUser(user))
+      .catch((err) => {});
   }, []);
 
   return (
     <Layout title="Profile">
-      <pre>{JSON.stringify(user, null, 2)}</pre>;
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </Layout>
   );
 }
