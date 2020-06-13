@@ -9,6 +9,18 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  // middleware
+  server.use(express.json()); // to parse json
+
+  server.post("/api/login", (req, res) => {
+    const { email, password } = req.body;
+    res.json({
+      email,
+      password,
+      success: true,
+    });
+  });
+
   // we are routing all the get calls to be handled by next
   server.get("*", (req, res) => {
     return handle(req, res);

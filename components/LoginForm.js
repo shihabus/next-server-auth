@@ -15,7 +15,7 @@ export default class LoginForm extends React.Component {
     e.preventDefault();
     console.log("state", this.state);
     const { email, password } = this.state;
-    //   loginUser(email, password)
+    loginUser(email, password);
   };
   render() {
     return (
