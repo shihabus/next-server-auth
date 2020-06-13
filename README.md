@@ -30,3 +30,20 @@ Since we have a server, we need to watch for changes in server.js file too. By d
     "dev":"nodemon server.js"
 }
 ```
+
+---
+
+## cookie
+
+`cookie-parser` is a library that is used for cookie manipulation. With it we can read the cookie content. We add it as a middleware in the server, like
+
+` server.use(cookieParser(COOKIE_SECRET)); `
+
+We pass `COOKIE_SECRET` in order to sign the cookie. Signing the cookie help us to detect cookie tampering. 
+
+In order send a cookie to the client we can use
+
+`
+res.cookie('key',{.....},OPTIONS)
+`
+`OPTIONS` can takes key value pairs that can help us in setting the domain, and other options for the cookie. 
