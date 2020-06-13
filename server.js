@@ -48,6 +48,19 @@ app.prepare().then(() => {
     res.json(userData);
   });
 
+  server.get("/api/profile", async (req, res) => {
+    const { signedCookies = {} } = req;
+    const { token } = signedCookies;
+    if (token && token.email) {
+      const { data } = await Axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const userProfile = data.find((user) => user.email === token.email);
+      return res.json({ user: userProfile });
+    }
+    res.sendStatus(404);
+  });
+
   // we are routing all the get calls to be handled by next
   server.get("*", (req, res) => {
     return handle(req, res);
